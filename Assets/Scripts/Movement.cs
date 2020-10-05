@@ -17,14 +17,22 @@ public class Movement : MonoBehaviour
         // Walking direction: 0 = idle, 1 = verticle, 2 = left, 3 = right
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(Vector3.right * speed);
-            GetComponent<Animator>().SetInteger("Walking Direction", 3);
+            if (gameObject.transform.position.x<10)
+            {
+                transform.Translate(Vector3.right * speed);
+                GetComponent<Animator>().SetInteger("Walking Direction", 3);
+            }
+           
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(Vector3.left * speed);
-            GetComponent<Animator>().SetInteger("Walking Direction", 2);
+            if (gameObject.transform.position.x > -10)
+            {
+                transform.Translate(Vector3.left * speed);
+                GetComponent<Animator>().SetInteger("Walking Direction", 2);
+            }
         }
+        /*
         else if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.Translate(Vector3.up * speed);
@@ -35,6 +43,7 @@ public class Movement : MonoBehaviour
             transform.Translate(Vector3.down * speed);
             GetComponent<Animator>().SetInteger("Walking Direction", 1);
         }
+        */
         else
         {
             GetComponent<Animator>().SetInteger("Walking Direction", 0);
